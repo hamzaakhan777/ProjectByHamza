@@ -1,560 +1,1516 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monash Top Navigation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="top-nav">
-        <!-- Left Section -->
-        <div class="nav-left">
-            <a href="#" class="home-link">
-                <i class="fas fa-home"></i>
-            </a>
-            <div class="location-dropdown">
-                <button class="location-btn">
-                    Monash Australia
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="#">Monash India</a>
-                    <a href="#">Monash Malaysia</a>
-                    <a href="#">Monash Indonesia</a>
-                </div>
-            </div>
-        </div>
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        <!-- Center Section -->
-        <div class="nav-center">
-            <a href="https://www.monash.edu/study/courses">Courses</a>
-            <a href="https://www.monash.edu/study/courses">Monash Online</a>
-            <a href="https://www.monash.edu/library">Library</a>
-            <a href="https://www.monash.edu/giving">Donate</a>
-        </div>
+body {
+    font-family: Arial, sans-serif;
+}
 
-        <!-- Right Section -->
-        <div class="nav-right">
-            <a href="#" class="icon-link">
-                <i class="fas fa-user-tie"></i>
-                STAFF
-            </a>
-            <a href="#" class="icon-link">
-                <i class="fas fa-user-graduate"></i>
-                STUDENTS
-            </a>
-            <a href="#" class="icon-link">
-                <i class="fas fa-users"></i>
-                ALUMNI
-            </a>
-            <a href="#" class="search-link">
-                <i class="fas fa-search"></i>
-            </a>
-        </div>
-    </div>
+/* Top Navigation Bar */
+.top-nav {
+    background-color: #006DAE;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+/* Left Section */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.home-link {
+    color: white;
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.location-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.location-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.location-btn i {
+    font-size: 12px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.location-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Center Section */
+.nav-center {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav-center a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+/* Right Section */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.search-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+/* Hover Effects */
+.home-link:hover,
+.location-btn:hover,
+.nav-center a:hover,
+.icon-link:hover,
+.search-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f5f5f5;
+    color: #006DAE;
+}
+
+
+@media (max-width: 768px) {
+    .top-nav {
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+
+    .nav-left,
+    .nav-center,
+    .nav-right {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .nav-center {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: inline-block;
+        background-color: #006DAE;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .menu-toggle.active + .nav-center {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Mobile View (480px and below) */
+@media (max-width: 480px) {
+    .top-nav {
+        padding: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-left,
+    .nav-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .home-link,
+    .location-btn,
+    .icon-link,
+    .search-link {
+        font-size: 16px;
+        padding: 6px;
+    }
+
+    .nav-center a {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .dropdown-content {
+        min-width: 150px;
+    }
+}
 
 
 
-    <div class="main-nav">
-        <!-- Logo Section -->
-        <div class="logo-section">
-            <img src="/Images/logo.png" height="100px" width="150px" alt="Monash University">
-        </div>
-        
-        <!-- Navigation Items Section -->
-        <div class="nav-section">
-            <nav class="nav-items">
-                <div class="nav-item">
-                    <a href="#">ABOUT</a>
-                    <div class="dropdown-menu">
-                        <a href="https://www.monash.edu/about/who">Where  we are</a>
-                        <a href="https://www.monash.edu/about/governance">Governance</a>
-                        <a href="https://www.monash.edu/about/structure">Structure</a>
-                        <a href="https://www.monash.edu/about/strategic-direction">Strategic direction</a>
-                        <a href="https://www.monash.edu/about/strategic-direction">Our locations</a>
-                        <a href="https://www.monash.edu/about/safety-security">Safety and security</a>
-                        <a href="https://www.monash.edu/about/contact-us">Contact</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#">STUDY</a>
-                    <div class="dropdown-menu">
-                        <a href="https://www.monash.edu/study/why-choose-monash">Why monash</a>
-                        <a href="https://www.monash.edu/study/courses">Courses </a>
-                        <a href="https://www.monash.edu/study/how-to-apply">How to apply</a>
-                        <a href="https://www.monash.edu/study/fees-scholarships">Fees and scholorships</a>
-                        <a href="https://www.monash.edu/study/international">Intrnational</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#">RESEARCH</a>
-                    <div class="dropdown-menu">
-                        
-                        <a href="https://www.monash.edu/research/find">Find a researcher</a>
-                        <a href="https://www.monash.edu/research/centres">Find institute and centerss</a>
-                        <a href="https://www.monash.edu/research/phds-masters-by-research">Master by research and PHD</a>
-                        <a href="https://www.monash.edu/research/grants-funding-compliance-support">Grants funding and compliance support </a>
-                        <a href="https://www.monash.edu/research/talent-enhancement">Resseaarcher talent enhancement </a>
-                        <a href="https://www.monash.edu/research/industry-and-commercialisation">Industry and Commercialisation </a>
-                        <a href="https://www.monash.edu/research/donate-to-research">Donate to reasearch</a>
-                        <a href="https://www.monash.edu/research/global-challenges">Addressing to global challenges</a>
-                        <a href="https://www.monash.edu/research/responsible-research">Responsible reasearch</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#">ENTERPRISE</a>
-                    <div class="dropdown-menu">
-                        <a href="https://www.monash.edu/industry/contact">Contact us </a>
-                        <a href="https://www.monash.edu/industry/partners-and-collaborators">partners and collaborators</a>
-                        
-                        <a href="https://www.monash.edu/monash-innovation">Commercialisation and entrepreneurship</a>
-                        <a href="https://www.monash.edu/industry/monash-technology-precinct">Monah technology Precinc</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#">INTERNATIONAL</a>
-                    <div class="dropdown-menu">
-                      
-                        <a href="https://www.monash.edu/international/global-partnerships">Global lPartnerships</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#">NEWS & EVENTS</a>
-                    <div class="dropdown-menu">
-                        <a href="https://www.monash.edu/news/events">Upcomming events </a>
-                        <a href="https://www.monash.edu/news/opinion-insights">Opnion and insights</a>
-                        <a href="https://www.monash.edu/about/contact-us">Media enqueires</a>
-                        <a href="https://www.monash.edu/news/coronavirus-updates">Novel coronavirus</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
+
+
+
+
+/* Main Navigation Styles */
+.main-nav {
+    background-color: white;
+    padding: 20px 50px;
+    border-bottom: 1px solid #eee;
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    align-items: center;
+    width: 100%;   /* Add this */
+}
+
+.logo-section {
+    justify-self: start;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.main-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0 auto;
+}
+
+.nav-items {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-item > a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 0;
+    position: relative;
+    font-size: 14px;
+}
+
+/* Underline Animation */
+.nav-item > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #006DAE;
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover > a::after {
+    width: 100%;
+}
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 250px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.dropdown-menu a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f5f5f5;
+    color: #006DAE;
+}
+
+/* Apply to Study Button */
+
+.button-section {
+    justify-self: end;
+}
+.apply-btn {
+    background-color: white;
+    color: #006DAE;
+    border: 2px solid #006DAE;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.apply-btn:hover {
+    background-color: #006DAE;
+    color: white;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effects for top navigation */
+.home-link:hover,
+.location-btn:hover,
+.nav-center a:hover,
+.icon-link:hover,
+.search-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+
+/* Tablet View (Max Width: 768px) */
+@media (max-width: 768px) {
+    .main-nav {
+        grid-template-columns: 1fr 1fr;
+        padding: 20px;
+    }
+
+    .button-section {
+        display: none;
+    }
+
+    .main-menu {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-items {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .menu-toggle {
+        display: block;
+        background-color: #006DAE;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .menu-toggle.active + .main-menu {
+        display: flex;
+    }
+}
+
+/* Mobile View (Max Width: 480px) */
+@media (max-width: 480px) {
+    .main-nav {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    .logo-section {
+        justify-self: center;
+    }
+
+    .nav-item > a {
+        font-size: 12px;
+        padding: 8px 0;
+    }
+
+    .apply-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+/*  Hero section styling  */
+
+
+.hero-section {
+    position: relative;
+    height: 68vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                url('Images/herosection.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+}
+
+.hero-content {
+    color: white;
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.offer-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.offer-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.offer-link:hover::after {
+    width: 100%;
+}
+
+.offer-link .arrow {
+    transition: transform 0.3s ease;
+}
+
+.offer-link:hover .arrow {
+    transform: translateX(5px);
+}
+
+.search-container {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-box {
+    position: relative;
+    background: white;
+    border-radius: 25px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+
+.placeholder-text {
+    position: absolute;
+    left: 50px;
+    color: #666;
+    pointer-events: none;
+}
+
+/* Search bar animation */
+@keyframes placeholderAnimation {
+    0%, 100% { content: "Search Courses..."; }
+    33% { content: "Search FAQs..."; }
+    66% { content: "Discover Monash..."; }
+}
+
+.placeholder-text::after {
+    content: "Search Courses...";
+    animation: placeholderAnimation 9s infinite;
+}
+
+.fa-search {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Make sure the search box is responsive */
+@media (max-width: 768px) {
+    .hero-section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .search-container {
+        max-width: 100%;
+    }
+}
+
+
+/* Tablet View (Max Width: 768px) */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 60vh;
+        padding: 5%;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .search-container {
+        max-width: 100%;
+    }
+}
+
+/* Mobile View (Max Width: 480px) */
+@media (max-width: 480px) {
+    .hero-section {
+        height: 55vh;
+        padding: 5%;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .offer-link {
+        font-size: 1rem;
+    }
+
+    .search-box {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .search-input {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .fa-search {
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+}
+
+/*  card design  */
+
+
+.features-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.make-change {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.make-change h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.feature-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card .icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    margin-bottom: 1rem;
+    color: #006DAE;
+}
+
+/* Video Section Styles */
+.video-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.video-content {
+    padding: 2rem;
+}
+
+.watch-video-btn {
+    background: #006DAE;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.watch-video-btn:hover {
+    background: #005a91;
+}
+
+.watch-video-btn:active {
+    background: #004872;
+    transform: scale(0.98);
+}
+
+.video-thumbnail {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #006DAE;
+}
+
+/* Global Affairs Card */
+.global-affairs-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.global-affairs-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.global-affairs-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.global-affairs-card .content {
+    padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .video-section {
+        grid-template-columns: 1fr;
+    }
+
+    .global-affairs-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+/*  Ranking section styling   */
+
+
+.rankings-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('Images/ranking.jpg');
+    padding: 80px 20px;
+    color: white;
+    text-align: center;
     
-        <!-- Apply Button Section -->
-        <div class="button-section">
-            <button class="apply-btn">APPLY TO STUDY</button>
-        </div>
-    </div>
+}
+
+.rankings-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rankings-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.rankings-content > p {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.rankings-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.ranking-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.ranking-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #4DA6FF;
+}
+
+.ranking-card .number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #4DA6FF;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.ranking-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.ranking-card p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.4;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .rankings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .rankings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rankings-content h2 {
+        font-size: 2rem;
+    }
+
+    .rankings-content > p {
+        font-size: 1rem;
+    }
+}
 
 
-    <!-- Hero Section -->
 
-    <div class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                CHOOSE MONASH<br>
-                IN 2025
-            </h1>
-            
-            <a href="#" class="offer-link">
-                Accept your offer
-                <span class="arrow">→</span>
-            </a>
+
+
+/* Impact 2030 Section */
+/* Shared styles for both sections */
+.impact-section,
+.explorer-section {
+    width: 100%;
+    height: 600px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Impact 2030 Section */
+.impact-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    background-color: #fff;
+}
+
+.impact-content {
+    flex: 1;
+    padding: 4rem;
+    max-width: 50%;
+}
+
+.impact-content h2 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.impact-content h3 {
+    color: #000;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.impact-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.find-more-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: #006DAE;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.find-more-btn:hover {
+    background-color: #005a91;
+}
+
+.impact-image {
+    flex: 1;
+    height: 100%;
+}
+
+.impact-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Monash Explorer Section */
+.explorer-section {
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.explorer-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+    width: 80%;
+    max-width: 800px;
+}
+
+.explorer-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.explorer-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.explorer-content .subtitle {
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.explore-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: #006DAE;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.explore-btn:hover {
+    background-color: #005a91;
+}
+
+.explorer-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.explorer-video:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.explorer-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Container for both sections */
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+
+
+/* newsarea*/
+
+
+/* Latest News Section */
+.latest-news-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.latest-news-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #333;
+}
+
+/* News Grid Layout */
+.news-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Featured News Item */
+.featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.featured .news-image {
+    height: 100%;
+}
+
+.featured img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* News Row (3 columns) */
+.news-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+/* Bottom News Item */
+.bottom {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+/* News Item Styling */
+.news-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.news-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.news-content {
+    padding: 1rem 0;
+}
+
+.news-title {
+    display: block;
+    color: #006DAE;
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.news-title:hover {
+    text-decoration: underline;
+}
+
+.news-content p {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* Meta Information */
+.meta {
+    margin-top: auto;
+}
+
+.date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+}
+
+.category {
+    color: #006DAE;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* View More Button */
+.view-more {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.view-more-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: #006DAE;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.view-more-btn:hover {
+    background-color: #005a91;
+}
+
+/* Tablet View (Max Width: 768px) */
+@media (max-width: 768px) {
+    .explorer-section {
+        height: 50vh;
+    }
+
+    .explorer-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .explorer-content p {
+        font-size: 1rem;
+    }
+
+    .featured {
+        grid-template-columns: 1fr;
+    }
+
+    .news-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bottom {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile View (Max Width: 480px) */
+@media (max-width: 480px) {
+    .explorer-section {
+        height: 40vh;
+        padding: 1rem;
+    }
+
+    .explorer-content {
+        width: 90%;
+    }
+
+    .explorer-content h2 {
+        font-size: 2rem;
+    }
+
+    .explorer-content p {
+        font-size: 0.9rem;
+    }
+
+    .explore-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    .news-row {
+        grid-template-columns: 1fr;
+    }
+
+    .news-item {
+        padding: 1rem;
+    }
+
+    .news-title {
+        font-size: 1rem;
+    }
+
+    .news-content p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Social media styling  */
+
+
+.social-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+/* Card Styling */
+.social-card {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+}
+
+.card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.card-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Overlay Styles */
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.5rem;
+    color: white;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.initial {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    opacity: 1;
+}
+
+.overlay.hover {
+    background-color: rgba(0, 109, 174, 0.9); /* Monash blue with opacity */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+}
+
+/* Hover Effects */
+.social-card:hover .overlay.initial {
+    opacity: 0;
+}
+
+.social-card:hover .overlay.hover {
+    opacity: 1;
+}
+
+/* Typography */
+.overlay h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.overlay p {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.date {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Monash Life Styling */
+.monash-life {
+    text-align: left;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: #006DAE;
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    margin-top: 0.5rem;
+}
+
+/* Link Styling */
+.link {
+    color: white;
+    text-decoration: none;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Social Icons */
+.fab {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+
+/* Footer styling */
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Social Icons */
+.social-icons {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 18px;
+    transition: opacity 0.3s ease;
+}
+
+.social-icon:hover {
+    opacity: 0.7;
+}
+
+/* Acknowledgment Section */
+.acknowledgment {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Main Content Grid */
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section li {
+    margin-bottom: 10px;
+}
+
+/* Hover Underline Effect */
+.hover-underline {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+}
+
+.hover-underline:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+.hover-underline:hover:after {
+    width: 100%;
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.footer-bottom h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Digital Team Link */
+.digital-team {
+    color: #fff;
+    text-decoration: none;
+    transition: brightness 0.3s ease;
+}
+
+.digital-team:hover {
+    filter: brightness(1.2);
+}
+
+/* Group of Eight Logo */
+.group-of-eight {
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+.group-of-eight:hover {
+    filter: brightness(1.2);
+}
+
+/* Footer Links */
+.footer-links {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+}
+
+.footer-links a {
+    margin: 0 10px;
+}
+
+.copyright {
+    display: block;
+    margin-top: 10px;
+    color: #888;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .footer-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
     
-            <div class="search-container">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="" class="search-input">
-                    <div class="placeholder-text"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    .footer-bottom {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
+/* Tablet View (Max Width: 1024px) */
+@media (max-width: 1024px) {
+    .footer-bottom {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
 
+/* Large Mobile View (Max Width: 768px) */
+@media (max-width: 768px) {
+    .footer-bottom {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        text-align: center;
+    }
 
-    <!-- cards -->
+    .footer-links {
+        font-size: 13px;
+    }
 
-    <section class="features-section">
-        <div class="make-change">
-            <h2>Make change.</h2>
-            <p>To the way you think. To the path you take.</p>
-            <p>To the lives of people all over the world.</p>
-        </div>
-    
-        <div class="features-grid">
-            <!-- Feature Cards -->
-            <a href="https://www.monash.edu/study/why-choose-monash/student-experience"  target="_blank" class="feature-card">
-                <div class="icon">😊</div>
-                <h3>Your student experience</h3>
-                <p>Monash University is more than just a place to study.</p>
-            </a>
-    
-            <a href="https://www.monash.edu/study/why-choose-monash/courses-explained" target="_blank" class="feature-card">
-                <div class="icon">📋</div>
-                <h3>Flexible study options</h3>
-                <p>Specialist courses and 80+ double degrees across 10 interest areas.</p>
-            </a>
-    
-            <a href="https://www.monash.edu/study/fees-scholarships/scholarships/find-a-scholarship" target="_blank" class="feature-card">
-                <div class="icon">🎓</div>
-                <h3>Generous scholarships</h3>
-                <p>400+ types of scholarships that reward talent and unlock potential.</p>
-            </a>
-        </div>
-    
-        <!-- Video Section -->
-        <div class="video-section">
-            <div class="video-content">
-                <h3>Make your change with Monash</h3>
-                <p>Our academics, students, staff, alumni and donors make up a community of change makers. Looking to work, we've created a unique environment where you're encouraged to reach your potential and then exceed it, to answer the age-old question: what'll you choose to be proud?</p>
-                <p>Whether you want to change your life, your career, your community or the future, it starts at Monash. Make your change at Monash.</p>
-                <button class="watch-video-btn">Watch the videos</button>
-            </div>
-            <div class="video-thumbnail">
-                <img src="/Images/video_thumbnail.jpg" alt="Video Thumbnail">
-                <div class="play-icon">▶</div>
-            </div>
-        </div>
-    
-        <!-- Global Affairs Card -->
-        <div class="global-affairs-card">
-            <img src="/Images/global.jpg" alt="Global Current Affairs">
-            <div class="content">
-                <h3>Our lens on global current affairs</h3>
-                <p>When the lull of pandemic reporting was replaced with expert commentary from our leading academics who are shaping the world, Monash Media helped you hack.</p>
-            </div>
-        </div>
-    </section>
+    .digital-team,
+    .group-of-eight {
+        text-align: center;
+    }
+}
 
+/* Small Mobile View (Max Width: 480px) */
+@media (max-width: 480px) {
+    .footer-bottom {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center;
+    }
 
+    .footer-bottom h4 {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
 
-    <!-- ranking section -->
+    .footer-links {
+        font-size: 12px;
+        padding-top: 15px;
+    }
 
-    <section class="rankings-section">
-        <div class="rankings-content">
-            <h2>Our world university rankings</h2>
-            <p>We've achieved an enviable reputation for research and teaching excellence in a short<br>
-               50 years and are ranked among the world's top universities.</p>
-            
-            <div class="rankings-grid">
-                <div class="ranking-card">
-                    <i class="fas fa-globe"></i>
-                    <h3>Ranked 37th globally</h3>
-                    <p>2024 QS World University Rankings</p>
-                </div>
-    
-                <div class="ranking-card">
-                    <span class="number">#2</span>
-                    <h3>Pharmacy and pharmacology</h3>
-                    <p>Ranked #2 in the world and #1 in Australia</p>
-                </div>
-    
-                <div class="ranking-card">
-                    <span class="number">#3</span>
-                    <h3>Business Administration</h3>
-                    <p>Ranked #3 in the world and #1 in Australia, Shanghai Rankings Subject Rankings 2023</p>
-                </div>
-    
-                <div class="ranking-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Top in the world</h3>
-                    <p>We rank 55th in the QS Times and World Report 2024-25 best Global Universities rankings.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    .footer-links a {
+        margin: 0 5px;
+    }
 
-
-    <div class="content-container">
-        <!-- Impact 2030 Section -->
-        <div class="impact-section">
-            <div class="impact-content">
-                <h2>STRATEGIC PLAN</h2>
-                <h3>Impact 2030</h3>
-                <p>Monash University has the ambition and capabilities through its excellence in education and research, its thirst for innovation and collaboration, and its international profile to address the global challenges of our age. We encourage you to read our Strategy Plan and become part of the positive change we're creating for ourselves and for the communities in which we study, work, live and engage.</p>
-                <a href="https://www.monash.edu/about/strategic-direction/strategic-plan" class="find-more-btn">Find out more</a>
-            </div>
-            <div class="impact-image">
-                <img src="/Images/impact.jpg" alt="Impact 2030 Visual">
-            </div>
-        </div>
-    
-        <!-- Monash Explorer Section -->
-        <div class="explorer-section">
-            <div class="explorer-content">
-                <h2>Monash Explorer</h2>
-                <p>Discover life at Monash University through the eyes of students, staff, alumni and academics.</p>
-                <p class="subtitle">Anytime. Anywhere.</p>
-                <a href="#" class="explore-btn">Explore now</a>
-            </div>
-            <div class="explorer-video">
-                <video autoplay loop muted playsinline>
-                    <source src="/Videos/moshvideo.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- news area-->
-
-
-    <div class="content-container">
-        <div class="latest-news-section">
-            <h2>Latest news</h2>
-            
-            <div class="news-grid">
-                <!-- Featured News Item (Top Row) -->
-                <div class="news-item featured">
-                    <div class="news-image">
-                        <img src="/Images/owl.jpg " alt="Bird Study">
-                    </div>
-                    <div class="news-content">
-                        <a href="https://www.monash.edu/news/articles/world-first-monash-study-shows-bird-flight-paths-through-two-proposed-bass-strait-wind-farms2" class="news-title">World-first Monash study shows bird flight paths through two proposed Bass Strait wind farms</a>
-                        <p>A world-first study of birds migrating across Bass Strait has shown they travelled directly through zones earmarked for the federal government's two declared offshore wind farms.</p>
-                        <span class="category">SCIENCE</span>
-                    </div>
-                </div>
-    
-                <!-- Three Column News Items -->
-                <div class="news-row">
-                    <div class="news-item">
-                        <div class="news-image">
-                            <img src="/Images/ethical.jpg" alt="AI Ethics">
-                        </div>
-                        <div class="news-content">
-                            <a href="https://www.monash.edu/news/articles/ethical-worries-when-using-ai-to-choose-embryos-in-assisted-reproduction" class="news-title">Ethical concerns over AI choosing which embryos may be born</a>
-                            <p>AI is increasingly being used to choose embryos for those using assisted reproductive technology but ethical questions remain unanswered.</p>
-                            <div class="meta">
-                                <span class="date">7 January 2024</span>
-                                <span class="category">MEDICINE & HEALTH</span>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="news-item">
-                        <div class="news-content">
-                            <a href="https://www.monash.edu/news/articles/monash-welcomes-australias-circular-economy-transition-progress" class="news-title">Monash welcomes Australia's circular economy transition progress</a>
-                            <p>Monash University has welcomed the positive steps in Australia's transition to a circular economy, with developments this month echoing Monash expert recommendations.</p>
-                            <div class="meta">
-                                <span class="date">21 December 2023</span>
-                                <span class="category">UNIVERSITY NEWS</span>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="news-item">
-                        <div class="news-content">
-                            <a href="https://www.monash.edu/news/articles/monash-university-stem-superstars-shine-in-national-recognition" class="news-title">Monash University STEM superstars shine in national recognition</a>
-                            <p>Three exceptional researchers from Monash University have been recognised as part of Australia's prestigious Superstars of STEM program for 2024.</p>
-                            <div class="meta">
-                                <span class="date">15 December 2023</span>
-                                <span class="category">UNIVERSITY NEWS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Bottom News Item -->
-                <div class="news-item bottom">
-                    <div class="news-image">
-                        <img src="/Images/girl.jpg" alt="Design Innovation">
-                    </div>
-                    <div class="news-content">
-                        <a href="https://www.monash.edu/news/articles/monash-graduates-design-helping-everyday-heroes" class="news-title">Monash graduate's design helping everyday heroes</a>
-                        <p>A Monash University graduate's breakthrough design is aiming to reduce workplace injury rates for paramedics, which are among the highest in Australia.</p>
-                        <span class="category">DESIGN & ARCHITECTURE</span>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="view-more">
-                <a href="#" class="view-more-btn">View more articles</a>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- sociakl  -->
-
-
-    <div class="social-container">
-        <div class="social-grid">
-            <!-- Change Day Card -->
-            <div class="social-card">
-                <div class="card-content">
-                    <img src="/Images/change.png" alt="Monash Change Day">
-                    <div class="overlay initial">
-                        <h3>MONASH CHANGE DAY</h3>
-                        <p>YOUR JOURNEY STARTS HERE</p>
-                        <p class="date">13 DECEMBER 2024</p>
-                    </div>
-                    <div class="overlay hover">
-                        <h3>Monash University</h3>
-                        <p>It's your future. Start shaping it. It's #MonashChangeDay!</p>
-                        <a href="#" class="link">Still time to register 👉</a>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Student Life Card -->
-            <div class="social-card">
-                <div class="card-content">
-                    <img src="/Images/student.png" alt="Student Life">
-                    <div class="overlay initial">
-                        <div class="monash-life">
-                            <h3>Monash Life</h3>
-                            <p>ALUMNI & COMMUNITY</p>
-                            <span class="tag">STUDENT LIFE</span>
-                        </div>
-                    </div>
-                    <div class="overlay hover">
-                        <p>How isn't that amazing? See for yourself what student life at Monash has to offer!</p>
-                        <i class="fab fa-twitter"></i>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Health Card -->
-            <div class="social-card">
-                <div class="card-content">
-                    <img src="/Images/heatlh.png" alt="Health Focus">
-                    <div class="overlay hover">
-                        <p>Discover the latest in health research and innovation at Monash.</p>
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Alumni Card -->
-            <div class="social-card">
-                <div class="card-content">
-                    <img src="/Images/life.png" alt="Alumni">
-                    <div class="overlay initial">
-                        <div class="monash-life">
-                            <h3>Monash Life</h3>
-                            <p>ALUMNI & COMMUNITY</p>
-                            <span class="tag">HEALTHY AGEING</span>
-                        </div>
-                    </div>
-                    <div class="overlay hover">
-                        <p>Learn how we can make our later years fun, connected and meaningful.</p>
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-<footer class="footer">
-    <div class="social-icons">
-        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-
-    <div class="acknowledgment">
-        <p>We acknowledge and pay respects to the Elders and Traditional Owners of the land on which our Australian campuses stand. 
-            <a href="#" class="hover-underline">Information for Indigenous Australians</a>
-        </p>
-    </div>
-
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>COMMUNITY</h3>
-            <ul>
-                <li><a href="#" class="hover-underline">Facilities</a></li>
-                <li><a href="#" class="hover-underline">Locations</a></li>
-                <li><a href="#" class="hover-underline">Diversity and inclusion</a></li>
-                <li><a href="#" class="hover-underline">Safety and security</a></li>
-                <li><a href="#" class="hover-underline">Sustainable development</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h3>RESOURCES</h3>
-            <ul>
-                <li><a href="#" class="hover-underline">Important dates</a></li>
-                <li><a href="#" class="hover-underline">How to apply</a></li>
-                <li><a href="#" class="hover-underline">A-Z index</a></li>
-                <li><a href="#" class="hover-underline">Policy Bank</a></li>
-                <li><a href="#" class="hover-underline">FAQs</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h3>CONTACT</h3>
-            <ul>
-                <li><a href="#" class="hover-underline">Contact us</a></li>
-                <li><a href="#" class="hover-underline">Campus maps</a></li>
-                <li><a href="#" class="hover-underline">Jobs at Monash</a></li>
-                <li><a href="#" class="hover-underline">Recruit a student</a></li>
-                <li><a href="#" class="hover-underline">Pay online</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h3>NEWS</h3>
-            <ul>
-                <li><a href="#" class="hover-underline">Latest news</a></li>
-                <li><a href="#" class="hover-underline">Monash Lens</a></li>
-                <li><a href="#" class="hover-underline">Podcasts</a></li>
-                <li><a href="#" class="hover-underline">A Different Lens</a></li>
-                <li><a href="#" class="hover-underline">Monash Life</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h3>ON OUR SITE</h3>
-            <ul>
-                <li><a href="#" class="hover-underline">Who we are</a></li>
-                <li><a href="#" class="hover-underline">Find a course</a></li>
-                <li><a href="#" class="hover-underline">Find a researcher</a></li>
-                <li><a href="#" class="hover-underline">Partner with Monash</a></li>
-                <li><a href="#" class="hover-underline">Sitemap</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <div class="registration-info">
-            <div>
-                <h4>REGISTERED AUSTRALIAN UNIVERSITY</h4>
-                <p>ABN: 12 377 614 012</p>
-                <p>TEQSA Provider ID: PRV12140</p>
-            </div>
-            <div>
-                <h4>CRICOS PROVIDER NUMBER</h4>
-                <p>Monash University: 00008C</p>
-                <p>Monash College: 01857J</p>
-            </div>
-        </div>
-
-        <div class="authorised-by">
-            <h4>AUTHORISED BY</h4>
-            <p>Chief Marketing, Admissions and Communications Officer and Vice-President</p>
-        </div>
-
-        <div class="maintained-by">
-            <h4>MAINTAINED BY</h4>
-            <a href="#" class="digital-team">Digital Team</a>
-            <p>Last updated: Jan 2023</p>
-        </div>
-
-        <div class="logo-container">
-            <a href="#" class="group-of-eight">
-                <img src="/Images/group.png" alt="Group of Eight Australia">
-            </a>
-        </div>
-    </div>
-
-    <div class="footer-links">
-        <a href="#" class="hover-underline">Accessibility</a> |
-        <a href="#" class="hover-underline">Disclaimer & copyright</a> |
-        <a href="#" class="hover-underline">Terms & conditions</a> |
-        <a href="#" class="hover-underline">Data privacy & cyber security</a> |
-        <a href="#" class="hover-underline">Data Consent Settings</a>
-        <span class="copyright">Copyright © 2023 Monash University</span>
-    </div>
-</footer>
-</body>
-</html>
+    .copyright {
+        font-size: 12px;
+    }
+}
