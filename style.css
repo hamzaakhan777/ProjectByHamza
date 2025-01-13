@@ -421,7 +421,7 @@ body {
     position: relative;
     height: 68vh;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                url('/Images/herosection.jpg');
+                url('Images/herosection.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -758,7 +758,7 @@ body {
 
 .rankings-section {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                url('/Images/ranking.jpg');
+                url('Images/ranking.jpg');
     padding: 80px 20px;
     color: white;
     text-align: center;
